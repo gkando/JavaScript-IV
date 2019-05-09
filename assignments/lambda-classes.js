@@ -29,36 +29,26 @@ class Instructor extends Person {
     }
 }
 
-    class Student extends Person {
-        constructor(props) {
-            super(props)
-            this.previousBackground = props.previousBackground 
-            this.className = props.className
-            this.favSubjects = props.favSubjects
-        }
+class Student extends Person {
+    constructor(props) {
+        super(props)
+        this.previousBackground = props.previousBackground 
+        this.className = props.className
+        this.favSubjects = props.favSubjects
+    }
 
     listsSubjects() {
-        return this.favSubjects
-    }
-    // a method that logs out all of the student's favoriteSubjects one by one.
-        PRAssignment(subject) {
-            return `${this.name} has submitted a PR for ${subject}`
-        }
-        sprintChallenge(subject) {
-            return `${this.name} has begun sprint challenge on ${subject}`
-        }
+        console.log(`${this.name}'s favorite subjects are:`);
+        this.favSubjects.forEach( function(i, e) { console.log(e+1 + ". " + i) } );
     }
 
-/* #### Project Manager
-* Now that we have instructors and students, we'd be nowhere without our PM's
-* ProjectManagers are extensions of Instructors
-* ProjectManagers have the following unique props:
-  * `gradClassName`: i.e. CS1
-  * `favInstructor`: i.e. Sean
-* ProjectManagers have the following Methods:
-  * `standUp` a method that takes in a slack channel and logs `{name} announces to {channel}, @channel standy times!​​​​​
-  * `debugsCode` a method that takes in a student object and a subject and logs out `{name} debugs {student.name}'s code on {subject}`
- */
+    PRAssignment(subject) {
+        return `${this.name} has submitted a PR for ${subject}`
+    }
+    sprintChallenge(subject) {
+        return `${this.name} has begun sprint challenge on ${subject}`
+    }
+}
 
  class ProjectManager extends Instructor{
      constructor(props) {
@@ -112,7 +102,7 @@ const napoleon = new Instructor({
     gender: 'male',
     previousBackground: 'General Contractor',
     className: 'Web20',
-    favSubjects: 'Constructors'
+    favSubjects: ['Constructors', 'React']
   });
 
   const abe = new Student({
@@ -122,7 +112,7 @@ const napoleon = new Instructor({
     gender: 'male',
     previousBackground: 'President',
     className: 'DS8',
-    favSubjects: 'Regression'
+    favSubjects: 'Regression, SQL'
   });
 
   const buzz = new Student({
@@ -132,7 +122,7 @@ const napoleon = new Instructor({
     gender: 'male',
     previousBackground: 'Astronaut',
     className: 'UI/UX',
-    favSubjects: 'Material Design'
+    favSubjects: 'Material Design, Flex-boxes'
   });
 
   const kelly = new ProjectManager({
@@ -162,6 +152,8 @@ const napoleon = new Instructor({
     favInstructor: 'Craig',
   });
 
+
+  //Instructors
   console.log(fred.speak());
   console.log(fred.demo("JS IV"))
   console.log(fred.grade(buzz, "CSS"))
@@ -174,6 +166,14 @@ const napoleon = new Instructor({
   console.log(napoleon.demo("Dev Ops"))
   console.log(napoleon.grade(abe, "Algorithims"))
 
+
+  //Students
   console.log(bob.speak());
   console.log(bob.PRAssignment("Python"))
   console.log(bob.sprintChallenge("jQuery"))
+  console.log(bob.listsSubjects())
+
+  //Instructors
+  console.log(josh.speak());
+  console.log(josh.standup("Web20"))
+  console.log(josh.debugsCode(buzz, "Javascript"))
